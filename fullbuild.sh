@@ -2,7 +2,7 @@
 set -e
 
 echo "========================================"
-echo "🚀 Starting full Yolks build (Node + Python)"
+echo "🚀 Starting full Yolks build (Node + Python + Bun)"
 echo "========================================"
 
 # Build Node.js Yolks
@@ -19,6 +19,28 @@ if [ -f "python/build.sh" ]; then
     bash python/build.sh
 else
     echo "⚠️ Python build script not found!"
+fi
+
+# Build Bun Latest
+if [ -f "bun_latest/dockerfile" ]; then
+    echo "🔹 Building Bun Latest Yolk..."
+    docker buildx build \
+        --platform linux/amd64,linux/arm64 \
+        -t ghcr.io/jjakesv/yolks:bun_latest \
+        -f bun_latest/dockerfile .
+else
+    echo "⚠️ Bun Latest dockerfile not found!"
+fi
+
+# Build Bun Canary
+if [ -f "bun_canary/dockerfile" ]; then
+    echo "🔹 Building Bun Canary Yolk..."
+    docker buildx build \
+        --platform linux/amd64,linux/arm64 \
+        -t ghcr.io/jjakesv/yolks:bun_canary \
+        -f bun_canary/dockerfile .
+else
+    echo "⚠️ Bun Canary dockerfile not found!"
 fi
 
 echo "========================================"

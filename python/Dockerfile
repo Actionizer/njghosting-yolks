@@ -8,9 +8,9 @@ LABEL author="Jake" maintainer="jjakesv"
 LABEL org.opencontainers.image.source="https://github.com/jjakesv/yolks"
 LABEL org.opencontainers.image.licenses=MIT
 
-# Install basic utilities
+# Install basic utilities (added iproute2 for "ip" command in entrypoint.sh)
 RUN apt-get update \
-    && apt-get install -y curl git build-essential ca-certificates tini \
+    && apt-get install -y curl git build-essential ca-certificates tini iproute2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -26,5 +26,5 @@ WORKDIR /srv/daemon-data
 # Copy entrypoint (make sure it exists relative to Dockerfile)
 COPY ./../entrypoint.sh /entrypoint.sh
 
-# Default CMD (if you have entrypoint)
+# Default CMD
 CMD [ "/bin/bash", "/entrypoint.sh" ]
