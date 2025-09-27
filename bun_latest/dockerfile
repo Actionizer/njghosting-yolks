@@ -1,14 +1,14 @@
-# Bun Latest Dockerfile for Pterodactyl
+# Bun Dockerfile for Pterodactyl
 ARG BUN_VERSION=latest
 
-# Use the official Bun image from Oven
+# Use official Bun image
 FROM --platform=$TARGETOS/$TARGETARCH oven/bun:${BUN_VERSION}
 
 LABEL author="jjakesv870@gmail.com" maintainer="jjakesv"
 LABEL org.opencontainers.image.source="https://github.com/jjakesv/yolks"
 LABEL org.opencontainers.image.licenses=MIT
 
-# Install deps & add non-root user (added iproute2 for entrypoint)
+# Install deps & add non-root user
 RUN apt-get update \
     && apt-get install -y git curl build-essential ca-certificates tini iproute2 \
     && adduser --disabled-password --gecos "" container \
@@ -23,5 +23,5 @@ WORKDIR /home/container
 # Copy entrypoint
 COPY ./entrypoint.sh /entrypoint.sh
 
-# Default command
-CMD [ "/bin/bash", "/entrypoint.sh" ]
+# Default CMD with tini
+CMD ["/usr/bin/tini", "--", "/bin/ash", "/entrypoint.sh"]
