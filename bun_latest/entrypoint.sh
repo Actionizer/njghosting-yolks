@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 # Bun Docker Entrypoint for Pterodactyl
 # Author: jjakesv870@gmail.com
 

@@ -31,4 +31,4 @@ WORKDIR /home/container
 COPY ./../entrypoint.sh /entrypoint.sh
 
 # Default command
-CMD ["/usr/bin/tini", "--", "/bin/ash", "/entrypoint.sh"]
+CMD ["/usr/bin/tini", "--", "/bin/bash", "/entrypoint.sh"]

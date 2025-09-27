@@ -25,7 +25,6 @@ fi
 if [ -f "bun_latest/dockerfile" ]; then
     echo "🔹 Building Bun Latest Yolk..."
     docker buildx build \
-        --platform linux/amd64,linux/arm64 \
         -t ghcr.io/jjakesv/yolks:bun_latest \
         -f bun_latest/dockerfile .
 else
@@ -36,7 +35,6 @@ fi
 if [ -f "bun_canary/dockerfile" ]; then
     echo "🔹 Building Bun Canary Yolk..."
     docker buildx build \
-        --platform linux/amd64,linux/arm64 \
         -t ghcr.io/jjakesv/yolks:bun_canary \
         -f bun_canary/dockerfile .
 else
