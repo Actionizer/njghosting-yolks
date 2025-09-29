@@ -1,10 +1,8 @@
 # Node Dockerfile in Pterodactyl style
 
-# Build args (must pass NODE_VERSION and optionally NPM_VERSION)
 ARG NODE_VERSION
 ARG NPM_VERSION
 
-# Base image
 FROM --platform=$TARGETOS/$TARGETARCH node:${NODE_VERSION}-bullseye
 
 LABEL author="Jake" maintainer="jjakesv"
@@ -18,17 +16,20 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install npm & pm2 as root to avoid permission issues
+# Install npm & pm2 as root
 ARG NPM_VERSION
 RUN /bin/bash -c "NPM_VER=${NPM_VERSION:-8}; echo Installing npm \$NPM_VER; npm install -g npm@\${NPM_VER} pm2"
+
+# Install ts-node + typescript globally so .ts files can run
+RUN npm install -g ts-node typescript
 
 # Switch to non-root for runtime
 USER container
 ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
-# Copy entrypoint (make sure it exists relative to Dockerfile)
-COPY ./../entrypoint.sh /entrypoint.sh
+# Copy entrypoint
+COPY ./entrypoint.sh /entrypoint.sh
 
 # Default command
 CMD ["/usr/bin/tini", "--", "/bin/bash", "/entrypoint.sh"]

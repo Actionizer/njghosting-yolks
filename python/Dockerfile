@@ -15,8 +15,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip & install common Python packages (add more if needed)
-RUN python -m pip install --upgrade pip
+# Upgrade pip & install common Python packages
+RUN python -m pip install --upgrade pip \
+    && python -m pip install setuptools wheel
 
 # Switch to non-root user
 USER container
@@ -24,7 +25,7 @@ ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
 # Copy entrypoint
-COPY ./../entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 
 # Default CMD using tini
 CMD ["/usr/bin/tini", "--", "/bin/bash", "/entrypoint.sh"]
