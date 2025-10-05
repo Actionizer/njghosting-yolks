@@ -1,17 +1,17 @@
 #!/bin/bash
-cd /home/container || exit 1
+cd /home/container
 
-# Get internal IP
+# Make internal IP available
 INTERNAL_IP=$(ip route get 1 | awk '{print $(NF-2);exit}')
 export INTERNAL_IP
 
 # Show Java version
-echo "Java version info:"
 java -version
-echo ""
 
-# Replace {{VARIABLES}} from Ptero with ${VARIABLES}
-MODIFIED_STARTUP=$(echo -e "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g')
+# Replace {{VAR}} → ${VAR} in Pterodactyl startup
+MODIFIED_STARTUP="java -jar Lavalink.jar"
+
+# Show final startup command
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Run Lavalink
