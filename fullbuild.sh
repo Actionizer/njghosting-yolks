@@ -41,6 +41,16 @@ else
     echo "⚠️ Bun Canary dockerfile not found!"
 fi
 
+# Build Deno
+if [ -f "deno/dockerfile" ]; then
+    echo "🔹 Building Deno yolk..."
+    docker buildx build \
+        -t ghcr.io/jjakesv/yolks:deno
+        -f deno/dockerfile .
+else
+    echo "⚠️ Deno dockerfile not found!"
+fi
+
 echo "========================================"
 echo "✅ Full Yolks build finished!"
 echo "========================================"
