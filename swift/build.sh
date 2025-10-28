@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 
 # Swift versions to support
 VERSIONS=(6.1 6.0 5.10)
-REPO="ghcr.io/Actionizer/njghosting-yolks"
+REPO="ghcr.io/actionizer/njghosting-yolks"
 
 for v in "${VERSIONS[@]}"; do
     TAG="swift_$v"
