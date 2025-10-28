@@ -66,4 +66,5 @@ jobs:
       - name: Specific
         run: |
           cd swift
+          chmod +x build.sh
           ./build.sh
