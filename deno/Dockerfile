@@ -1,7 +1,7 @@
 FROM --platform=$TARGETOS/$TARGETARCH deno:debian
 
-LABEL author="Jake" maintainer="jjakesv"
-LABEL org.opencontainers.image.source="https://github.com/jjakesv/yolks"
+LABEL author="Mineturtlee" maintainer="mineturtlee"
+LABEL org.opencontainers.image.source="https://github.com/Actionizer/NJGHosting-yolks"
 LABEL org.opencontainers.image.licenses=MIT
 
 # Install deps & add non-root user
