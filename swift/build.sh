@@ -29,3 +29,4 @@ for v in "${VERSIONS[@]}"; do
     echo "📦 Pushing $TAG to GHCR"
     docker push "$REPO:$TAG"
 done
+ 
