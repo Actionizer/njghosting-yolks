@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.source="https://github.com/Actionizer/NJGHosting-
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Set up container user
-adduser --disabled-password --gecos "" container
+RUN adduser --disabled-password --gecos "" container
 
 USER container
 ENV USER=container HOME=/home/container
