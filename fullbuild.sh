@@ -25,7 +25,7 @@ fi
 if [ -f "bun_latest/dockerfile" ]; then
     echo "🔹 Building Bun Latest Yolk..."
     docker buildx build \
-        -t ghcr.io/jjakesv/yolks:bun_latest \
+        -t ghcr.io/actionizer/njghosting-yolks:bun_latest \
         -f bun_latest/dockerfile .
 else
     echo "⚠️ Bun Latest dockerfile not found!"
@@ -35,7 +35,7 @@ fi
 if [ -f "bun_canary/dockerfile" ]; then
     echo "🔹 Building Bun Canary Yolk..."
     docker buildx build \
-        -t ghcr.io/jjakesv/yolks:bun_canary \
+        -t ghcr.io/actionizer/njghosting-yolks:bun_canary \
         -f bun_canary/dockerfile .
 else
     echo "⚠️ Bun Canary dockerfile not found!"
@@ -45,10 +45,28 @@ fi
 if [ -f "deno/dockerfile" ]; then
     echo "🔹 Building Deno yolk..."
     docker buildx build \
-        -t ghcr.io/jjakesv/yolks:deno
+        -t ghcr.io/actionizer/njghosting-yolks:deno
         -f deno/dockerfile .
 else
     echo "⚠️ Deno dockerfile not found!"
+fi
+
+# Build swift :)
+if [ -f "swift/dockerfile" ]; then
+    echo "Building Swift yolk..."
+    bash swift/build.sh
+else
+    echo "Swift dockerfile not found!"
+fi
+
+# Build lavalink
+if [ -f "lavalink/dockerfile" ]; then
+    echo "Building Lavalink yolk..."
+    docker buildx build \
+        --platform linux/amd64 \
+        -t lavalink-container .
+else
+    echo "Lavalink dockerfile not found!"
 fi
 
 echo "========================================"

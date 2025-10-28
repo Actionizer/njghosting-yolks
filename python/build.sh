@@ -5,14 +5,14 @@ set -e
 cd "$(dirname "$0")"
 
 PY_VERSIONS=(3.11 3.12 3.13)
-REPO="ghcr.io/jjakesv/yolks"
+REPO="ghcr.io/actionizer/njghosting-yolks"
 
 for v in "${PY_VERSIONS[@]}"; do
     TAG="python_$v"
     echo "🚀 Checking Python $v -> $TAG"
 
     # Skip build if image already exists
-    if curl -s -f -l "https://ghcr.io/v2/jjakesv/yolks/manifests/$TAG" >/dev/null 2>&1; then
+    if curl -s -f -l "https://ghcr.io/v2/actionizer/njghosting-yolks/manifests/$TAG" >/dev/null 2>&1; then
         echo "✅ Image $TAG already exists, skipping build."
         continue
     fi

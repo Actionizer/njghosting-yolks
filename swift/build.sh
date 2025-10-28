@@ -13,7 +13,7 @@ for v in "${VERSIONS[@]}"; do
     echo "🚀 Checking Swift $v -> $TAG"
 
     # Skip build if image already exists
-    if curl -s -f -l "https://ghcr.io/v2/Actionizer/NJGHosting-yolks/manifests/$TAG" >/dev/null 2>&1; then
+    if curl -s -f -l "https://ghcr.io/v2/actionizer/njghosting-yolks/manifests/$TAG" >/dev/null 2>&1; then
         echo "✅ Image $TAG already exists, skipping build."
         continue
     fi
