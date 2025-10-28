@@ -4,9 +4,9 @@ ARG VERSION
 
 FROM swift:${VERSION}-focal
 
-LABEL author="Jake"
-LABEL maintainer="jjakesv"
-LABEL org.opencontainers.image.source="https://github.com/jjakesv/yolks"
+LABEL author="Mineturtlee"
+LABEL maintainer="Mineturtlee"
+LABEL org.opencontainers.image.source="https://github.com/Actionizer/NJGHosting-yolks"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Set up container user
