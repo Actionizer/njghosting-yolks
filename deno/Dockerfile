@@ -1,4 +1,4 @@
-FROM --platform=$TARGETOS/$TARGETARCH deno:debian
+FROM --platform=$TARGETOS/$TARGETARCH denoland/deno:debian
 
 LABEL author="Mineturtlee" maintainer="mineturtlee"
 LABEL org.opencontainers.image.source="https://github.com/Actionizer/NJGHosting-yolks"
