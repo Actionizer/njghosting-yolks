@@ -5,7 +5,7 @@ set -e
 cd "$(dirname "$0")"
 
 # Swift versions to support
-VERSIONS=(6.2 6.1 6.0 5.10)
+VERSIONS=(6.1 6.0 5.10)
 REPO="ghcr.io/jjakesv/yolks"
 
 for v in "${VERSIONS[@]}"; do
