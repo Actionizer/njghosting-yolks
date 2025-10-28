@@ -44,9 +44,7 @@ fi
 # Build Deno
 if [ -f "deno/Dockerfile" ]; then
     echo "🔹 Building Deno yolk..."
-    docker buildx build \
-        -t ghcr.io/actionizer/njghosting-yolks:deno \
-        -f deno/Dockerfile .
+    bash deno/build.sh
 else
     echo "⚠️ Deno dockerfile not found!"
 fi
@@ -62,10 +60,7 @@ fi
 # Build lavalink
 if [ -f "lavalink/Dockerfile" ]; then
     echo "Building Lavalink yolk..."
-    docker buildx build \
-        -t ghcr.io/actionizer/njghosting-yolks:lavalink \
-        --platform linux/amd64 \
-        -f lavalink/Dockerfile .
+    bash lavalink/build.sh
 else
     echo "Lavalink dockerfile not found!"
 fi
